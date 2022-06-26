@@ -76,18 +76,6 @@ class AuthController extends Controller
     }
 
 
-    // public function login(Request $request){
-    //     if (!Auth::attempt($request->only('email', 'password'))) {
-    //         return response()->json([
-    //         'message' => 'Login information is invalid.'
-    //         ], 401);
-    //     }
-    // }
-
-    public function test(){
-        echo "helooo";
-    }
-
 
     public function logout(Request $request){
         auth()->user()->tokens()->delete();
