@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +21,17 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 
+
 //Protected routes
 Route::group(['middleware'=>['auth:sanctum']],function () {
     Route::post('/logout',[AuthController::class,'logout']);
+    Route::post('/services',[ServicesController::class,'store']);
+    Route::get('/services',[ServicesController::class,'index']);
+});
+
+
+Route::group(['middleware' => ['auth:sanctum','checkAdmin']], function () {
+    Route::get('/admin/techniciens',[AdminController::class,'getTechniciens']);
 });
 
 

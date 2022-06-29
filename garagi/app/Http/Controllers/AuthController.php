@@ -21,7 +21,6 @@ class AuthController extends Controller
             'name'=>'required|max:255',
             'email'=>'required|email|max:255|unique:users,email',
             'phone'=>'unique:users',
-            'photo'=>'required|string',
             'password'=>'required|confirmed',
             'password'=>'required|same:password',
             'role'=>'required|string',
@@ -30,7 +29,6 @@ class AuthController extends Controller
             'name'=>$request['name'],
             'email'=>$request['email'],
             'role'=>$request['role'],
-            'photo'=>$request['photo'],
             'phone'=>$request['phone'],
             'password'=>bcrypt($request['password']),
         ]);
